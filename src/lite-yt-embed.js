@@ -159,7 +159,7 @@ class LiteYTEmbed extends HTMLElement {
                           ? event.target.getIframe()
                           : videoPlaceholderEl.querySelector('iframe');
                         if (apiIframe) {
-                          apiIframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                          apiIframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
                         }
                         event.target.playVideo();
                         resolve(player);
