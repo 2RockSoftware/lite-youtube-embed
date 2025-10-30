@@ -155,9 +155,7 @@ class LiteYTEmbed extends HTMLElement {
                 events: {
                     'onReady': event => {
                         // get the iframe the API created
-                        const apiIframe = event.target.getIframe
-                          ? event.target.getIframe()
-                          : videoPlaceholderEl.querySelector('iframe');
+                        const apiIframe = event.target.getIframe();
                         if (apiIframe) {
                           apiIframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
                         }
