@@ -154,6 +154,13 @@ class LiteYTEmbed extends HTMLElement {
                 playerVars: paramsObj,
                 events: {
                     'onReady': event => {
+                        // get the iframe the API created
+                        const apiIframe = event.target.getIframe
+                          ? event.target.getIframe()
+                          : videoPlaceholderEl.querySelector('iframe');
+                        if (apiIframe) {
+                          apiIframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                        }
                         event.target.playVideo();
                         resolve(player);
                     }
@@ -201,6 +208,7 @@ class LiteYTEmbed extends HTMLElement {
         iframeEl.title = this.playLabel;
         iframeEl.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
         iframeEl.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        iframeEl.referrerPolicy = 'strict-origin-when-cross-origin';
         iframeEl.allowFullscreen = true;
         // AFAIK, the encoding here isn't necessary for XSS, but we'll do it only because this is a URL
         // https://stackoverflow.com/q/64959723/89484
